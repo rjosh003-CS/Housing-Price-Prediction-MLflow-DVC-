@@ -1,0 +1,10 @@
+name: housing_price_pipeline
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      n_estimators: {type: int, default: 101}
+      max_depth: {type:int, default: 11}
+      command: "python src/train.py --n_estimaters {n_estimators} --max_depth {max_depth}"
