@@ -22,6 +22,9 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(42)
 
+    # Force MLflow to store tracking logs locally right inside your project folder
+    mlflow.set_tracking_uri("file:./mlruns")
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--n_estimators", type=int, default=100)
     parser.add_argument("--max_depth", type=int, default=10)
