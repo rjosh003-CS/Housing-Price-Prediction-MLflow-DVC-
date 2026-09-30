@@ -22,9 +22,6 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(42)
 
-    # Force MLflow to store tracking logs locally right inside your project folder
-    mlflow.set_tracking_uri("file:./mlruns")
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--n_estimators", type=int, default=100)
     parser.add_argument("--max_depth", type=int, default=10)
@@ -39,12 +36,15 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Split dataset (Target column in California housing is 'MedHouseValue')
-    target_feature_name="MedHouseValue"
+    target_feature_name="MedHouseVal"
     train, test = train_test_split(df, test_size=0.25, random_state=42)
     train_x = train.drop([target_feature_name], axis=1)
     test_x = test.drop([target_feature_name], axis=1)
     train_y = train[[target_feature_name]]
     test_y = test[[target_feature_name]]
+
+    # Force MLflow to store tracking logs locally right inside your project folder
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
 
     # Start MLflow Tracking
     mlflow.set_experiment("Housing_Price_Experiment")
@@ -74,5 +74,9 @@ if __name__ == "__main__":
         mlflow.log_metric("mae", mae)
 
         # Log model format for downstream Model Registry usage
-        mlflow.sklearn.log_model(rf, "housing_model")
+        mlflow.sklearn.log_model(
+                rf,
+                name="housing_model",
+                skops_trusted_types=["sklearn.tree._tree.Tree"]
+            )
         print("Housing model training and MLflow logging completed!")
