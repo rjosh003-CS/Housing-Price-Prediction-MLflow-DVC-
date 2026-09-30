@@ -1,0 +1,9 @@
+# MLflow local tracking and databases
+mlflow.db
+mlruns/
+mlartifacts/
+
+# DVC local cache and data files
+/data/housing.csv
+.dvc/cache/
+.dvc/tmp/
