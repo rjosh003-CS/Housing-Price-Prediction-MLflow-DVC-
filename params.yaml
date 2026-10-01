@@ -1,0 +1,21 @@
+data:
+  # path to training data
+  data_path: "data/housing.csv"
+  train_data_path: "data/processed/train.csv"
+  test_data_path: "data/processed/test.csv"
+  target_feature: "MedHouseVal"
+
+base:
+  random_state: 42
+  test_size: 0.25
+  # base model parameters
+  model_type: RandomForestRegressor
+
+# model: RandomForest Regression
+train:
+  # use optuna for hyperparameter tuning
+  use_optuna: false
+
+  # model hyperparameters
+  n_estimators: [100, 128, 256, 512]
+  max_depth: [5, 10, 15, 20, 25]
