@@ -1,0 +1,26 @@
+# dvc.yaml
+# dvc pipeline for the project
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/housing.csv
+    params:
+      - base.test_size
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+    params:
+      - train.use_optuna
+      - train.n_estimators
+      - train.max_depth
+    outs:
+      - models/model.pkl
