@@ -14,7 +14,7 @@ base:
 # model: RandomForest Regression
 train:
   # use optuna for hyperparameter tuning
-  use_optuna: false
+  use_optuna: true
 
   # model hyperparameters
   n_estimators: [100, 128, 256, 512]
