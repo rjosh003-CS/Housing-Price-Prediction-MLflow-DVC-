@@ -1,3 +1,4 @@
+# params.yaml
 data:
   # path to training data
   data_path: "data/housing.csv"

@@ -13,7 +13,7 @@ stages:
       - data/processed/test.csv
 
   train:
-    cmd: python src/train.py
+    cmd: python src/main.py
     deps:
       - src/train.py
       - data/processed/train.csv
