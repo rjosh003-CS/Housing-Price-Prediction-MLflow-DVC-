@@ -47,6 +47,7 @@ class HousingModelTrainer:
         mlflow.sklearn.log_model(
             self.model,
             name="model",
-            signature=signature
+            signature=signature,
+            skops_trusted_types=["sklearn.tree._tree.Tree"]
         )
 
