@@ -1,3 +1,4 @@
+# src/preprocess.py
 import warnings
 
 import os
@@ -9,9 +10,8 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-
-if __name__ == "__main__":
-
+def load_split_raw_data():
+    
     warnings.filterwarnings("ignore")
     np.random.seed(42)
 
@@ -41,3 +41,7 @@ if __name__ == "__main__":
     test.to_csv(processed_data_dir / "test.csv", index=False)
     train.to_csv(processed_data_dir / "train.csv", index=False)
     print(f"Processed data saved to {processed_data_dir}")
+
+
+if __name__ == "__main__":
+    load_split_raw_data()
