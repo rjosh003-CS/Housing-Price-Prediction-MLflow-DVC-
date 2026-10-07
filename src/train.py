@@ -17,6 +17,14 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
+def load_data(data_path):
+    try:
+        df = pd.read_csv(data_path)
+        return df
+    except Exception as e:
+        print(f"Error loading dataset from {data_path}: {e}", file=sys.stderr)
+        sys.exit(1)
+
 
 def load_split_data(train_path, test_path, target_feature):
   if target_feature is None:
