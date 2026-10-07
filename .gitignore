@@ -7,3 +7,6 @@ mlartifacts/
 /data/housing.csv
 .dvc/cache/
 .dvc/tmp/
+
+# vscode settings
+.vscode/
